@@ -8,108 +8,75 @@
  * @format
  */
 
- import React from 'react';
+ import React, { useState } from 'react';
  import {
    SafeAreaView,
-   ScrollView,
-   StatusBar,
    StyleSheet,
    Text,
-   useColorScheme,
-   View,
  } from 'react-native';
 
  import {
    Colors,
-   DebugInstructions,
-   Header,
-   LearnMoreLinks,
-   ReloadInstructions,
  } from 'react-native/Libraries/NewAppScreen';
 
- const Section: React.FC<{
-   title: string;
- }> = ({children, title}) => {
-   const isDarkMode = useColorScheme() === 'dark';
-   return (
-     <View style={styles.sectionContainer}>
-       <Text
-         style={[
-           styles.sectionTitle,
-           {
-             color: isDarkMode ? Colors.white : Colors.black,
-           },
-         ]}>
-         {title}
-       </Text>
-       <Text
-         style={[
-           styles.sectionDescription,
-           {
-             color: isDarkMode ? Colors.light : Colors.dark,
-           },
-         ]}>
-         {children}
-       </Text>
-     </View>
-   );
- };
+import TabNavigator from 'react-native-tab-navigator';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import Ionicon from 'react-native-vector-icons/Ionicons';
+
+const HOME = 'home';
+const COMPONENT = 'component';
+const LIBRARY = 'library'
+
+const styles = StyleSheet.create({
+    container:{
+        height: '100%',
+        backgroundColor: Colors.white
+    },
+    tabBar:{
+        position: 'absolute',
+        bottom: 0,
+        height: 50,
+    },
+  });
 
  const App = () => {
-   const isDarkMode = useColorScheme() === 'dark';
 
-   const backgroundStyle = {
-     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-   };
+    const [tab, setTab] = useState<string>(HOME)
 
    return (
-     <SafeAreaView style={backgroundStyle}>
-       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-       <ScrollView
-         contentInsetAdjustmentBehavior="automatic"
-         style={backgroundStyle}>
-         <Header />
-         <View
-           style={{
-             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-           }}>
-           <Section title="Step One">
-             Edit <Text style={styles.highlight}>App.js</Text> to change this
-             screen and then come back to see your edits.
-           </Section>
-           <Section title="See Your Changes">
-             <ReloadInstructions />
-           </Section>
-           <Section title="Debug">
-             <DebugInstructions />
-           </Section>
-           <Section title="Learn More">
-             Read the docs to discover what to do next:
-           </Section>
-           <LearnMoreLinks />
-         </View>
-       </ScrollView>
+     <SafeAreaView style={styles.container}>
+        <TabNavigator tabBarStyle={styles.tabBar}>
+            <TabNavigator.Item
+                selected={tab === HOME}
+                title="首页"
+                renderIcon={() => <Icon name="home" size={30} color="black" />}
+                renderSelectedIcon={() => <Icon name="home" size={30} color="black" />}
+                onPress={() => {setTab(HOME)}}
+            >
+                <Text>这是首页</Text>
+            </TabNavigator.Item>
+            <TabNavigator.Item
+                selected={tab === COMPONENT}
+                title="常用组件"
+                renderIcon={() => <FontAwesome5Icon name="react" size={30} color="black" />}
+                renderSelectedIcon={() => <FontAwesome5Icon name="react" size={30} color="black" />}
+                onPress={() => {setTab(COMPONENT)}}
+            >
+                <Text>常用组件</Text>
+            </TabNavigator.Item>
+            <TabNavigator.Item
+                selected={tab === LIBRARY}
+                title="第三方库"
+                renderIcon={() => <Ionicon name="library" size={30} color="black" />}
+                renderSelectedIcon={() => <Ionicon name="library" size={30} color="black" />}
+                onPress={() => {setTab(LIBRARY)}}
+            >
+                <Text>第三方库</Text>
+            </TabNavigator.Item>
+        </TabNavigator>
      </SafeAreaView>
    );
  };
-
- const styles = StyleSheet.create({
-   sectionContainer: {
-     marginTop: 32,
-     paddingHorizontal: 24,
-   },
-   sectionTitle: {
-     fontSize: 24,
-     fontWeight: '600',
-   },
-   sectionDescription: {
-     marginTop: 8,
-     fontSize: 18,
-     fontWeight: '400',
-   },
-   highlight: {
-     fontWeight: '700',
-   },
- });
 
  export default App;
