@@ -6,10 +6,11 @@
  */
 
 module.exports = {
+  resetCache: true,
   transformer: {
     getTransformOptions: async () => ({
       transform: {
-        experimentalImportSupport: false,
+        experimentalImportSupport: true,
         inlineRequires: true,
       },
     }),
