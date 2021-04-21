@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Home = () => {
+const HomeTab = () => {
   return (
     <View style={styles.container}>
       <FontAwesome5Icon name="react" size={80} color="black" />
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeTab;
