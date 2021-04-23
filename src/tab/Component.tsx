@@ -29,7 +29,10 @@ const Item: React.FC<ItemProps> = (props) =>{
         </Text>
         <AntDesignIcon name="rightcircleo" 
             style={styles.icon} 
-            onPress={()=>navigation.navigate('CustomComponent',{ component: props.component })}
+            onPress={()=>navigation.navigate('CustomComponent',{ 
+                component: props.component ,
+                title: props.name
+            })}
         ></AntDesignIcon>
     </View>
     )
