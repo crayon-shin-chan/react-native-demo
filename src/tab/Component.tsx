@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "react-native";
 import ActivityIndicatorDemo from 'component/system/ActivityIndicatorDemo';
+import { useNavigation } from "@react-navigation/core";
 
 const DATA = [
   {
@@ -9,18 +10,34 @@ const DATA = [
   }
 ];
 
-const Item: React.FC<{title:string}> = (props) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{props.title}</Text>
-  </View>
-);
+interface ItemProps{
+    name: string,
+    component: React.FC
+}
+
+interface RenderItemProps {
+    item: ItemProps
+}
+
+const Item: React.FC<ItemProps> = (props) =>{
+    const navigation = useNavigation();
+   return (
+    <View style={styles.item}>
+        <Text style={styles.title} onPress={()=>navigation.navigate('CustomComponent',{ component: props.component })}>
+            {props.name}
+        </Text>
+    </View>
+    )
+};
+
+const renderItem:React.FC<RenderItemProps> = ({ item }) => <Item {...item} />
 
 const ComponentTab = () => (
   <SafeAreaView style={styles.container}>
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item.name + index}
-      renderItem={({ item }) => <Item title={item.name} />}
+      renderItem={renderItem}
       renderSectionHeader={({ section: { title } }) => (
         <Text style={styles.header}>{title}</Text>
       )}
