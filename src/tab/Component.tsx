@@ -3,11 +3,15 @@ import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "re
 import { useNavigation } from "@react-navigation/core";
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import ActivityIndicatorDemo from 'component/system/ActivityIndicatorDemo';
+import ButtonDemo from "component/system/ButtonDemo";
 
 const DATA = [
   {
     title: "系统组件",
-    data: [{ name: 'ActivityIndicator' , component: ActivityIndicatorDemo }]
+    data: [
+        { name: 'ActivityIndicator' , component: ActivityIndicatorDemo },
+        { name: 'Button' , component: ButtonDemo }
+    ]
   }
 ];
 
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 12,
+    fontFamily: 'System',
   },
   icon: {
     fontSize: 26,
