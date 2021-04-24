@@ -3,16 +3,28 @@ import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "re
 import { useNavigation } from "@react-navigation/core";
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import ActivityIndicatorDemo from 'component/system/ActivityIndicatorDemo';
-import ButtonDemo from "component/system/ButtonDemo";
+import ButtonDemo from "component/Interactive/ButtonDemo";
+import ViewDemo from "component/base/view-demo";
 
 const DATA = [
-  {
-    title: "系统组件",
-    data: [
-        { name: 'ActivityIndicator' , component: ActivityIndicatorDemo },
-        { name: 'Button' , component: ButtonDemo }
-    ]
-  }
+    {
+        title: "基础组件",
+        data: [
+            { name: 'View' , component: ViewDemo }
+        ]
+    },
+    {
+        title: "交互组件",
+        data: [
+            { name: 'Button' , component: ButtonDemo }
+        ]
+    },
+    {
+        title: "系统组件",
+        data: [
+            { name: 'ActivityIndicator' , component: ActivityIndicatorDemo },
+        ]
+    },
 ];
 
 interface ItemProps{
