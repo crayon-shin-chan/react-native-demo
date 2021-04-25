@@ -1,70 +1,65 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/core";
+import React from 'react';
+import {Text, View, SafeAreaView, SectionList, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import ActivityIndicatorDemo from 'component/system/ActivityIndicatorDemo';
-import ButtonDemo from "component/Interactive/ButtonDemo";
-import ViewDemo from "component/base/view-demo";
+import ButtonDemo from 'component/Interactive/ButtonDemo';
+import ViewDemo from 'component/base/view-demo';
 
 const DATA = [
-    {
-        title: "基础组件",
-        data: [
-            { name: 'View' , component: ViewDemo }
-        ]
-    },
-    {
-        title: "交互组件",
-        data: [
-            { name: 'Button' , component: ButtonDemo }
-        ]
-    },
-    {
-        title: "系统组件",
-        data: [
-            { name: 'ActivityIndicator' , component: ActivityIndicatorDemo },
-        ]
-    },
+  {
+    title: '基础组件',
+    data: [{name: 'View', component: ViewDemo}],
+  },
+  {
+    title: '交互组件',
+    data: [{name: 'Button', component: ButtonDemo}],
+  },
+  {
+    title: '系统组件',
+    data: [{name: 'ActivityIndicator', component: ActivityIndicatorDemo}],
+  },
 ];
 
-interface ItemProps{
-    name: string,
-    component: React.FC
+interface ItemProps {
+  name: string;
+  component: React.FC;
 }
 
 interface RenderItemProps {
-    item: ItemProps
+  item: ItemProps;
 }
 
-const Item: React.FC<ItemProps> = (props) =>{
-    const navigation = useNavigation();
-    return (
+const Item: React.FC<ItemProps> = props => {
+  const navigation = useNavigation();
+  return (
     <View style={styles.item}>
-        <Text style={styles.title}>
-            {props.name}
-        </Text>
-        <AntDesignIcon name="rightcircleo" 
-            style={styles.icon} 
-            onPress={()=>navigation.navigate('CustomComponent',{ 
-                component: props.component ,
-                title: props.name
-            })}
-        ></AntDesignIcon>
+      <Text style={styles.title}>{props.name}</Text>
+      <AntDesignIcon
+        name="rightcircleo"
+        style={styles.icon}
+        onPress={() =>
+          navigation.navigate('CustomComponent', {
+            component: props.component,
+            title: props.name,
+          })
+        }
+      />
     </View>
-    )
+  );
 };
 
-const renderItem:React.FC<RenderItemProps> = ({ item }) => <Item {...item} />
+const renderItem: React.FC<RenderItemProps> = ({item}) => <Item {...item} />;
 
-interface SectionProps { 
-    section: { 
-        title:string
-    } 
+interface SectionProps {
+  section: {
+    title: string;
+  };
 }
 
-const renderSectionHeader: React.FC<SectionProps> = ({ section: { title } }) => (
-    <Text style={styles.header}>{title}</Text>
-  )
+const renderSectionHeader: React.FC<SectionProps> = ({section: {title}}) => (
+  <Text style={styles.header}>{title}</Text>
+);
 
 const ComponentTab = () => (
   <SafeAreaView style={styles.container}>
@@ -80,15 +75,14 @@ const ComponentTab = () => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16
+    marginHorizontal: 16,
   },
   header: {
     fontSize: 14,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff',
   },
   item: {
-    backgroundColor: "#f9c2ff",
+    backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
     borderRadius: 5,
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 26,
-  }
+  },
 });
 
 export default ComponentTab;
