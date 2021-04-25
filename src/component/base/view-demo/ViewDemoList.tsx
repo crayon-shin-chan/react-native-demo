@@ -1,22 +1,36 @@
+import { useNavigation, useRoute } from "@react-navigation/core";
 import React from "react";
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import ViewDemo from ".";
 
-const ViewDemoList = () => (
-  <View style={styles.container}>
-      <View style={styles.row}>
+
+const ViewDemoList = () => {
+
+    const navigation = useNavigation();
+    const route = useRoute();
+    const goChild = (name:string)=> {
+        navigation.navigate("CustomComponent",{ 
+            component: ViewDemo ,
+            title: 'View',
+            screen: name
+        })
+    }
+    return (
+    <View style={styles.container}>
+        <View style={styles.row}>
+            <Text style={styles.text} onPress={()=>goChild('Default')}>Default</Text>
+            <Text style={styles.text}>Event</Text>
+        </View>
+        <View style={styles.row}>
             <Text style={styles.text}>Layout</Text>
             <Text style={styles.text}>Event</Text>
-      </View>
-      <View style={styles.row}>
+        </View>
+        <View style={styles.row}>
             <Text style={styles.text}>Layout</Text>
             <Text style={styles.text}>Event</Text>
-      </View>
-      <View style={styles.row}>
-            <Text style={styles.text}>Layout</Text>
-            <Text style={styles.text}>Event</Text>
-      </View>
-  </View>
-);
+        </View>
+    </View>
+)};
 
 const styles = StyleSheet.create({
   container: {
