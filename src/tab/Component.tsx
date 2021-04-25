@@ -5,11 +5,15 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import ActivityIndicatorDemo from 'component/system/ActivityIndicatorDemo';
 import ButtonDemo from 'component/Interactive/ButtonDemo';
 import ViewDemo from 'component/base/view-demo';
+import TextDemo from 'component/base/text-demo';
 
 const DATA = [
   {
     title: '基础组件',
-    data: [{name: 'View', component: ViewDemo}],
+    data: [
+      {name: 'View', component: ViewDemo},
+      {name: 'Text', component: TextDemo},
+    ],
   },
   {
     title: '交互组件',

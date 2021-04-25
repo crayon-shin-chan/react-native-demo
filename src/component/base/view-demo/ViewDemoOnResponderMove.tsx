@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Alert, GestureResponderEvent, StyleSheet, Text, View} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {GestureResponderEvent, StyleSheet, Text, View} from 'react-native';
 
 const ViewDemoOnResponderMove = () => {
   const [content, setContent] = useState<string>('');
@@ -8,9 +7,9 @@ const ViewDemoOnResponderMove = () => {
 
   const onStartShouldSetResponder = useCallback(() => true, []);
 
-  const onResponderGrant = useCallback(()=>{
+  const onResponderGrant = useCallback(() => {
     setColor('red');
-  },[]);
+  }, []);
 
   const onResponderMove = useCallback(
     (event: GestureResponderEvent): boolean => {
@@ -29,18 +28,15 @@ const ViewDemoOnResponderMove = () => {
     [],
   );
 
-  const onResponderEnd = useCallback(
-    (event: GestureResponderEvent) => {
-        console.log(event.nativeEvent);
-        setColor('green');
-    },
-    [],
-  );
+  const onResponderEnd = useCallback((event: GestureResponderEvent) => {
+    console.log(event.nativeEvent);
+    setColor('green');
+  }, []);
 
   return (
     <>
       <View
-        style={[styles.container,{ backgroundColor: color }]}
+        style={[styles.container, {backgroundColor: color}]}
         onStartShouldSetResponder={onStartShouldSetResponder}
         onResponderGrant={onResponderGrant}
         onResponderMove={onResponderMove}
@@ -48,7 +44,7 @@ const ViewDemoOnResponderMove = () => {
         <Text style={styles.text}>{content}</Text>
       </View>
       <View
-        style={[styles.container,{ backgroundColor: color }]}
+        style={[styles.container, {backgroundColor: color}]}
         onStartShouldSetResponder={onStartShouldSetResponder}
         onResponderGrant={onResponderGrant}
         onResponderMove={onResponderMove}
